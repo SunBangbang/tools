@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#inp{width: 400px;height: 50px;}
+	#con{width: 400px;}
+	#con div{width: 400px;height: 30px;border: 1px solid red;}
+	</style>
+</head>
+<body>
+	<input id="inp" type="text">
+	<div id="con">
+		<!-- <div>111111111</div> -->
+	</div>
+	<script src="ajax.js"></script>
+	<script>
+	var inp=document.getElementById('inp');
+	var con=document.getElementById('con');
+	inp.onkeyup=function() {
+		con.innerHTML='';
+		ajax('baidu.php?sc=http://suggestion.baidu.com/su?wd='+inp.value+'&t='+Math.random(),function(str) {
+			var json=JSON.parse(str);
+			for (var i = 0; i < json.s.length; i++) {
+				con.innerHTML+='<div>'+json.s[i]+'</div>';
+			};
+		},function() {
+			alert('请求失败')
+		})
+	};
+	</script>
+</body>
+</html>

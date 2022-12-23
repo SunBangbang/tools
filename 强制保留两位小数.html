@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<title>无标题</title>
+</head>
+<body>
+<script type="text/javascript">
+	//强制保留2位小数，如：2，会在2后面补上00.即2.00
+    function toDecimal2(x) {
+        var f = parseFloat(x);   //将字符串转换为浮点型
+        if (isNaN(f)) {       //isNaN() 函数用于检查其参数是否是非数字值。
+            return '';
+        }
+        var f = Math.round(x*100)/100;
+        var s = f.toString();
+        var rs = s.indexOf('.');
+        if (rs < 0) {
+            rs = s.length;
+            s += '.';
+        }
+        while (s.length <= rs + 2) {
+            s += '0';
+        }
+        return s;
+    }
+</script>
+</body>
+</html>

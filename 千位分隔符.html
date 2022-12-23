@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑页</title>
+</head>
+<body>
+<script type="text/javascript">
+	// 千位分隔符
+    function thousandBitSeparator(num) {
+        return num && (num
+                .toString().indexOf('.') != -1 ? num.toString().replace(/(\d)(?=(\d{3})+\.)/g, function($0, $1) {
+                    return $1 + ",";
+                }) : num.toString().replace(/(\d)(?=(\d{3}))/g, function($0, $1) {
+                    return $1 + ",";
+                }));
+    }
+</script>
+</body>
+</html>

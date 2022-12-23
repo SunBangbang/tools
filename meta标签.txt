@@ -1,0 +1,6 @@
+// 控制浏览器使用内核
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+// 用于删除苹果工具栏和菜单栏，模式就是yes
+<meta name="apple-mobile-web-app-capable" content="yes">
+// 控制状态栏显示样式 颜色
+<meta name="apple-mobile-web-app-status-bar-style" content="black">

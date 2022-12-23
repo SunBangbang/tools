@@ -1,0 +1,21 @@
+顶宽高文本居中
+    position: absolute;
+    overflow: auto;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+
+父元素: parents{
+	display:table;height:XXpx;
+	}
+子元素：son-self{
+	dispaly:table-cell;vertical-align:middle
+	}
+
+文本溢出设置为省略号
+width:XXpx;height:XXpx;overflow:hidden;
+display:-webkit-box;-webkit-box-orient:vertical;
+-webkit-line-clamp:3;

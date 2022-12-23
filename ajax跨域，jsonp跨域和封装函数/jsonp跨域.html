@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#box{
+		width: 300px;
+		height: 100px;
+		border: 1px solid #000;
+	}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+
+<script>
+	var box=document.getElementById('box');
+	var script1=null;
+	function aaa (str) {
+		alert(str.ip);
+		box.innerHTML=str.ip;
+		console.log(str)
+	}
+	document.onkeyup=function  () {
+		box.innerHTML='';
+		if (script1) {
+			document.body.removeChild(script1);
+		};
+		script1=document.createElement('script');
+		script1.src="http://freegeoip.net/json/?callback=aaa";
+		document.body.appendChild(script1);
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	function setcookie(key,value,day) {//创建一个cookie
+		var date=new Date();
+		date.setDate(date.getDate()+day);
+		document.cookie=key+"="+escape(value)+";expires="+date;
+	};
+setcookie("user","xiaoli",7);
+
+function getcookie(key) {//获取cookie
+	var coo=unescape(document.cookie);
+	var arr=coo.split("; ");
+	//[user1=xiaowang,user2=xiaoli];
+	for (var i = 0; i < arr.length; i++) {
+		var arr2=arr[i].split("=");
+		if (arr2[0]==key) {
+			return arr2[1];
+		};
+	};
+
+}
+var coo1=getcookie('user');
+var coo2=getcookie('user2');
+alert(coo1);
+alert(coo2);
+
+function removecookie(key) {//删除cookie
+	setcookie(key,"0",-1);
+};
+removecookie("user");
+	</script>
+</body>
+</html>

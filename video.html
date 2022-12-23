@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      border: 1px solid transparent;
+    }
+
+    .video {
+      width: 800px;
+      height: 500px;
+      margin: 100px auto 0;
+      background-color: pink;
+
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+    }
+
+    a,
+    button {
+      border: 0;
+      background-color: #448aff21;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 2px;
+      color: #448aff !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <div class="video">
+    <video id="video" autoplay></video>
+  </div> -->
+  <!-- <button onclick="snap()">Snap!</button> -->
+  <!-- <canvas id="preview" width="160" height="120"></canvas> -->
+  <!-- 录制视频 -->
+  <button id="start">Start</button> <button id="stop">Stop</button>
+  <div class="video">
+    <p>live. <span class="timer"></span></p>
+    <video width="600" id="live" style="box-sizing: border-box; border: 4px solid #f48"></video>
+  </div>
+  <script>
+    // const constraints = {
+    //   audio: true,
+    //   video: true
+    // };
+
+    // const start = () => navigator.mediaDevices.getUserMedia(constraints).then(stream => document.querySelector("video")
+    //   .srcObject = stream).catch(log);
+    // // video.onloadedmetadata = function (e) {
+    // //   video.play();
+    // // };
+
+    // start();
+
+    // var canvas = document.createElement("canvas");
+
+    // canvas.width = 640;
+
+    // canvas.height = 480;
+
+    // var snap = () => {
+
+    //   canvas.getContext('2d').drawImage(video, 0, 0, 640, 480);
+
+    //   preview.getContext('2d').drawImage(canvas, 0, 0, 160, 120);
+
+    // }
+
+    // var log = msg => div.innerHTML += "<br>" + msg;
+
+
+    // 录制视频
+    let l = console.log;
+    let n = 0;
+
+    let mediaRecorder;
+    let timer;
+    const stopButton = document.getElementById("stop");
+    const startButton = document.getElementById("start");
+
+    navigator.mediaDevices
+      .getUserMedia({
+        audio: true,
+        video: true,
+      })
+      .then(stream => {
+        let liveVideo = document.getElementById("live");
+        // liveVideo.src = URL.createObjectURL(stream); // 你会看到一些警告
+        liveVideo.srcObject = stream;
+        liveVideo.play();
+
+        stopButton.addEventListener("click", stopLive);
+        startButton.addEventListener("click", e => {
+          startLive(stream);
+        });
+      });
+
+    // 显示录制的秒数
+    function logger() {
+      const timerEl = document.querySelector(".timer");
+      timer = setInterval(() => {
+        n += 1;
+        timerEl.textContent = `${n}s`;
+      }, 1000);
+    }
+
+    // 暂停后下载视频
+    function downLoadVideo(chunks) {
+      let downloadLink = document.createElement("a");
+      downloadLink.href = URL.createObjectURL(
+        new Blob(chunks, {
+          type: "application/video",
+        })
+      );
+      // downloadLink.download = 'live.webm';
+      // downloadLink.download = "live.ogg";
+      downloadLink.download = 'live.mp4';
+      downloadLink.click();
+    }
+
+    // 结束录制
+    function stopLive() {
+      clearInterval(timer);
+      n = 0;
+      if (mediaRecorder) {
+        mediaRecorder.stop();
+      } else {
+        alert("还没有开始。");
+      }
+    }
+
+    function startLive(stream) {
+      logger();
+      let recordedChunks = [];
+      mediaRecorder = new MediaRecorder(stream);
+      mediaRecorder.start();
+
+      mediaRecorder.addEventListener("dataavailable", function (e) {
+        if (e.data.size > 0) recordedChunks.push(e.data);
+      });
+
+      mediaRecorder.addEventListener("stop", function () {
+        l("暂停 自动下载");
+        downLoadVideo(recordedChunks);
+      });
+
+      mediaRecorder.addEventListener("start", e => {
+        l("开始 录制");
+      });
+    }
+  </script>
+</body>
+
+</html>

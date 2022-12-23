@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+</head>
+<body>
+	<script>
+	function handleResponse(str){
+		alert("你的IP地址："+str.ip+" 位于："+str.country_name+str.region_name);
+	}
+	var Script = document.createElement("script");
+	Script.src = "http://freegeoip.net/json/?callback=handleResponse";
+	document.body.appendChild(Script);
+	</script>
+</body>
+</html>

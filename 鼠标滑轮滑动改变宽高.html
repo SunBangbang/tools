@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#box{
+		width: 500px;
+		height: 500px;
+		border: 1px solid red;
+		background: blue;
+	}
+	</style>
+</head>
+<body>
+	<div id="box">
+		
+		
+	</div>
+<script>
+	var box=document.getElementById('box');
+	var str=window.navigator.userAgent.toLowerCase();
+	var a=box.offsetWidth,b=box.offsetHeight;
+	if (str.indexOf('firefox')!=-1) {
+		box.addEventListener('DOMMouseScroll',function (ev) {
+			ev.preventDefanlt;
+			if (ev.detail<0) {
+				a++;
+				b++;
+				this.style.width=a+'px';
+				this.style.height=b+'px';
+			}else{
+				a--;
+				b--;
+				this.style.width=a+'px';
+				this.style.height=b+'px';
+			}
+		},false)
+	}else{
+		box.onmousewheel=function (ev) {
+			var event=window.event||ev;
+			if (event.preventDefanlt) {
+				event.preventDefanlt;
+			} else{
+				event.returnValue=false;
+			};
+			console.log(event);
+			if (event.wheelDelta>0) {
+				a++;
+				b++;
+				this.style.width=a+'px';
+				this.style.height=b+'px';
+			}else{
+				a--;
+				b--;
+				this.style.width=a+'px';
+				this.style.height=b+'px';
+			}
+		}
+	}
+</script>
+</body>
+</html>

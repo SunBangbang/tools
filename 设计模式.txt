@@ -1,0 +1,24 @@
+1  工厂模式    你告诉他你需要什么对象,然后他给你什么对象
+   代表:  jquery
+   需要频繁的产出低差异对象
+
+2  建造者模式  
+    代表:  vue
+    只需要产出一个到两个高度定制的对象
+
+3  函数式
+    组合大于继承
+
+
+
+缓存的问题
+
+   1. 缓存的量引起的内存,储存压力
+
+   2. 缓存的更新问题   解决方法例如: 文件添加哈希值
+
+
+// "dev": "webpack-dev-server --devtool eval-source-map --inline --progress --config build/webpack.dev.conf.js",
+//"dev": "node --max-old-space-size=8192 node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --progress --config build/webpack.dev.conf.js",
+
+AppID : wxfe5dff908b013e05

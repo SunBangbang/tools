@@ -1,0 +1,20 @@
+document.body.scrollTop||document.documentElement.scrollTop;//文档的滚动条
+document.documentElement.offsetHeight;//整个文档高度
+document.documentElement.clientHeight;//窗口高度
+clientX clientY鼠标在当前屏幕的坐标
+offsetHeight offsetWidth 获取元素的宽高（带边框）
+clientHeight clientWidth 获取元素的宽高（不带边框）
+
+
+jq中获取各种高度的写法
+
+$(window).height(); //浏览器时下窗口可视区域高度
+$(document).height(); //浏览器时下窗口文档的高度
+$(document.body).height();//浏览器时下窗口文档body的高度
+$(document.body).outerHeight(true);//浏览器时下窗口文档body的总高度 包括border padding margin
+$(window).width(); //浏览器时下窗口可视区域宽度
+$(document).width();//浏览器时下窗口文档对于象宽度
+$(document.body).width();//浏览器时下窗口文档body的高度
+$(document.body).outerWidth(true);//浏览器时下窗口文档body的总宽度 包括border padding margin
+$(document).scrollTop(); //获取滚动条到顶部的垂直高度
+$(document).scrollLeft(); //获取滚动条到左边的垂直宽度
